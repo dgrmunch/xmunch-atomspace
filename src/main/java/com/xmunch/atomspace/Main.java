@@ -8,6 +8,7 @@ import com.xmunch.atomspace.aux.AtomSpaceParams;
 import com.xmunch.atomspace.aux.AtomType;
 import com.xmunch.atomspace.aux.GlobalValues;
 import com.xmunch.atomspace.aux.VertexType;
+import com.xmunch.atomspace.examples.RandomGraphExample;
 import com.xmunch.atomspace.model.AtomSpace;
 import com.xmunch.atomspace.visualization.UbigraphClient;
 
@@ -23,6 +24,7 @@ public class Main {
     	atomSpaceParams.put(AtomSpaceParams.VISUALIZATION.get(),GlobalValues.TRUE.get());
     	
     	atomSpace = AtomSpace.getInstance(atomSpaceParams);
+    	RandomGraphExample.run(atomParams,atomSpace);
         
     }
 
