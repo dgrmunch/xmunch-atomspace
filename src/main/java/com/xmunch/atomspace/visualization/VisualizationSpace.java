@@ -40,6 +40,11 @@ public class VisualizationSpace {
 				identifier,
 				VisualizationParams.COLOR.get(),
 				getTypeColor(vertexType));
+		
+		graph.setVertexAttribute(
+				identifier,
+				VisualizationParams.FONT_COLOR.get(),
+				getTypeColor(vertexType));
 	
 	}
 

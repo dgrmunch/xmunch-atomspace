@@ -14,6 +14,12 @@ public enum VisualizationParams {
 			return "color";
 		}
 	},
+	FONT_COLOR {
+		@Override
+		public String get() {
+			return "fontcolor";
+		}
+	},
 	SHAPE {
 		@Override
 		public String get() {
