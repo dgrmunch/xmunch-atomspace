@@ -1,21 +1,19 @@
 package com.xmunch.atomspace.model;
 
-import com.xmunch.atomspace.aux.AtomType;
-
 public class Atom {
-	private Integer id;
-	private AtomType atomType;
+	private String id;
+	private String atomType;
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public AtomType getAtomType() {
+	public String getAtomType() {
 		return atomType;
 	}
-	public void setAtomType(AtomType atomType) {
+	public void setAtomType(String atomType) {
 		this.atomType = atomType;
 	}
 }
