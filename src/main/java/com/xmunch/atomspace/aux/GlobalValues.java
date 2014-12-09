@@ -20,6 +20,18 @@ public enum GlobalValues {
 			return "1";
 		}
 	},
+	THREE {
+		@Override
+		public String get() {
+			return "3";
+		}
+	},
+	HALF {
+		@Override
+		public String get() {
+			return "0.5";
+		}
+	},
 	RED {
 		@Override
 		public String get() {
