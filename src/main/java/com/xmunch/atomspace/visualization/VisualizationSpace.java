@@ -12,11 +12,19 @@ public class VisualizationSpace {
 		graph.clear();
 		setEdgeStyle();
 	}
+	
+	public void removeEdge(String id) {
+		graph.removeEdge(Integer.valueOf(id));
+	}
 
 	public void createEdge(String from, String to) {
 		graph.newEdge(Integer.valueOf(from), Integer.valueOf(to));
 	}
 
+	public void removeVertex(String id) {
+		graph.removeVertex(Integer.valueOf(id));
+	}
+	
 	public void createVertex(String id, String vertexType, String label) {
 		Integer identifier = Integer.valueOf(id);
 		graph.newVertex(identifier);
