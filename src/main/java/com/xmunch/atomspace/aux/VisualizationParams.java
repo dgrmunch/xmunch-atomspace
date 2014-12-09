@@ -38,10 +38,22 @@ public enum VisualizationParams {
 			return "arrow";
 		}
 	},
+	ARROW_POSITION {
+		@Override
+		public String get() {
+			return "arrow_position";
+		}
+	},
 	STROKE {
 		@Override
 		public String get() {
 			return "stroke";
+		}
+	},
+	STRENGTH {
+		@Override
+		public String get() {
+			return "strength";
 		}
 	},
 	WIDTH {
