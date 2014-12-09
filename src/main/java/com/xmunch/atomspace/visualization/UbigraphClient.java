@@ -175,6 +175,30 @@ public int setVertexAttribute(int vertexId, String attribute, String value)
 }
 
 /**
+ * Set an attribute of a edge. See the Ubigraph XMLRPC manual
+ * for details of what attributes can be set.  
+ * Some basic attributes are:
+ * <ul>
+ *  <li>label: a string to be displayed on the edge</li>
+ *  <li>color: e.g. "#ff0000"</li>
+ * </ul>
+ * @param attribute The name of the attribute to be changed, e.g., "label".
+ * @param value The new value for the attribute.  
+ */
+public int setEdgeAttribute(int edgeId, String attribute, String value)
+{
+  try {
+    Object[] params = new Object[]{edgeId, attribute,
+      value };
+    Integer result = (Integer) client.execute("ubigraph.set_edge_attribute",
+      params);
+    return result;
+  } catch(XmlRpcException e) {
+    throw new RuntimeException(e.getMessage());
+  }
+}
+
+/**
  * Create a new vertex style.  
  * @param parent_styleId  The style on which to base the new style.  Use
  *                        0 for the default vertex style.
