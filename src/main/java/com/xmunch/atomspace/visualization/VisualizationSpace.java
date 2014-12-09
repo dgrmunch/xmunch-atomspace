@@ -17,8 +17,12 @@ public class VisualizationSpace {
 		graph.removeEdge(Integer.valueOf(id));
 	}
 
-	public void createEdge(String from, String to) {
-		graph.newEdge(Integer.valueOf(from), Integer.valueOf(to));
+	public void createEdge(String edgeLabel, String from, String to) {
+		Integer identifier = graph.newEdge(Integer.valueOf(from), Integer.valueOf(to));
+		graph.setEdgeAttribute(
+				identifier, 
+				VisualizationParams.LABEL.get(),
+				edgeLabel);
 	}
 
 	public void removeVertex(String id) {

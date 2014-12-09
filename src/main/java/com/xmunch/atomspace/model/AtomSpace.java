@@ -100,7 +100,7 @@ public class AtomSpace {
 		edgeSpace.put(edgeId, edge);
 		
 		if (visualization) {
-				visualizationSpace.createEdge(atomParams.get(AtomParams.FROM.get()),
+				visualizationSpace.createEdge(atomParams.get(AtomParams.EDGE_LABEL.get()),atomParams.get(AtomParams.FROM.get()),
 				atomParams.get(AtomParams.TO.get()));
 		}
 	}
