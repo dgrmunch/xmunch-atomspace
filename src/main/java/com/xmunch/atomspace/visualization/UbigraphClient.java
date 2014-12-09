@@ -1,15 +1,18 @@
 package com.xmunch.atomspace.visualization;
 
 import java.net.*;
+
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import org.apache.xmlrpc.XmlRpcException;
+
+import com.xmunch.atomspace.aux.GlobalValues;
 
 /**
  * To visualize the XMUNCH ATOMSPACE (XA) a Ubigraph server
  * is necessary. XA uses the Veldhuizen's Ubigraph client,
  * a Java language interface to a Ubigraph server XMLRPC.
- * 
+ *
  * @author Todd Veldhuizen
  */
 
@@ -17,16 +20,12 @@ public class UbigraphClient {
 
 XmlRpcClient client;
 
-/**
- * Connects to the ubigraph server.  By default, the url
- * http://127.0.0.1:20738/RPC2 (localhost, port 20738) is
- * used.
- */
+
 public UbigraphClient()
 {
   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
   try {
-    config.setServerURL(new URL("http://127.0.0.1:20738/RPC2"));
+    config.setServerURL(new URL(GlobalValues.RPC_SERVER.get()));
     client = new XmlRpcClient();
     client.setConfig(config);
   } catch(Exception e) {

@@ -55,6 +55,11 @@ public enum GlobalValues {
 		public String get() {
 			return "#FFFFFF";
 		}
+	}, RPC_SERVER{
+		@Override
+		public String get() {
+			return "http://127.0.0.1:20738/RPC2";
+		}		
 	};
 
 	public abstract String get();
