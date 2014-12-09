@@ -112,4 +112,19 @@ public class AtomSpace {
 		}
 	}
 
+	public HashMap<String, Vertex> getVertexSpace() {
+		return vertexSpace;
+	}
+
+	public void setVertexSpace(HashMap<String, Vertex> vertexSpace) {
+		this.vertexSpace = vertexSpace;
+	}
+
+	public HashMap<String, Edge> getEdgeSpace() {
+		return edgeSpace;
+	}
+
+	public void setEdgeSpace(HashMap<String, Edge> edgeSpace) {
+		this.edgeSpace = edgeSpace;
+	}
 }
