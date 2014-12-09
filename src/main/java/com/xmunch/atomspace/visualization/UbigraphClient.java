@@ -6,7 +6,7 @@ import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import org.apache.xmlrpc.XmlRpcException;
 
-import com.xmunch.atomspace.aux.GlobalValues;
+import com.xmunch.atomspace.aux.Globals;
 
 /**
  * To visualize the XMUNCH ATOMSPACE (XA) a Ubigraph server
@@ -25,7 +25,7 @@ public UbigraphClient()
 {
   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
   try {
-    config.setServerURL(new URL(GlobalValues.RPC_SERVER.get()));
+    config.setServerURL(new URL(Globals.RPC_SERVER.get()));
     client = new XmlRpcClient();
     client.setConfig(config);
   } catch(Exception e) {

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.xmunch.atomspace.aux.AtomParams;
 import com.xmunch.atomspace.aux.AtomSpaceParams;
 import com.xmunch.atomspace.aux.AtomType;
-import com.xmunch.atomspace.aux.GlobalValues;
+import com.xmunch.atomspace.aux.Globals;
 import com.xmunch.atomspace.visualization.VisualizationSpace;
 
 public class AtomSpace {
@@ -106,7 +106,7 @@ public class AtomSpace {
 	}
 
 	private void visualizationActivation(String visualizationParam) {
-		this.visualization = visualizationParam.equals(GlobalValues.TRUE.get());
+		this.visualization = visualizationParam.equals(Globals.TRUE.get());
 		if (this.visualization) {
 			this.visualizationSpace = new VisualizationSpace();
 		}

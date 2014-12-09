@@ -15,7 +15,7 @@ import com.xmunch.atomspace.model.Vertex;
 public class RandomGraphExample {
 
 	public static void run(HashMap<String, String> atomParams, AtomSpace atomSpace) {
-		Integer max = 200;
+		Integer max = 300;
 		
 		while(true){
 			createRandomVertices(max,atomParams,atomSpace);

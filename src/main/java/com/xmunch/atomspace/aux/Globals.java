@@ -1,6 +1,6 @@
 package com.xmunch.atomspace.aux;
 
-public enum GlobalValues {
+public enum Globals {
 
 	TRUE {
 		@Override

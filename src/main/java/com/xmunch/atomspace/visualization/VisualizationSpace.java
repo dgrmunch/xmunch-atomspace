@@ -1,6 +1,6 @@
 package com.xmunch.atomspace.visualization;
 
-import com.xmunch.atomspace.aux.GlobalValues;
+import com.xmunch.atomspace.aux.Globals;
 import com.xmunch.atomspace.aux.VertexType;
 import com.xmunch.atomspace.aux.VisualizationParams;
 
@@ -47,7 +47,7 @@ public class VisualizationSpace {
 		graph.setVertexAttribute(
 				identifier,
 				VisualizationParams.SIZE.get(),
-				GlobalValues.ONE.get());
+				Globals.ONE.get());
 		
 		graph.setVertexAttribute(
 				identifier,
@@ -62,7 +62,7 @@ public class VisualizationSpace {
 		graph.setVertexAttribute(
 				identifier,
 				VisualizationParams.FONT_COLOR.get(),
-				GlobalValues.WHITE.get());
+				Globals.WHITE.get());
 	
 	}
 
@@ -71,19 +71,19 @@ public class VisualizationSpace {
 		
 		switch (VertexType.valueOf(vertexType)){
 		case A:
-			color = GlobalValues.BLUE.get();
+			color = Globals.BLUE.get();
 			break;
 		case B:
-			color = GlobalValues.RED.get();
+			color = Globals.RED.get();
 			break;
 		case C:
-			color = GlobalValues.YELLOW.get();
+			color = Globals.YELLOW.get();
 			break;
 		case D:
-			color = GlobalValues.WHITE.get();
+			color = Globals.WHITE.get();
 			break;
 		case E:
-			color = GlobalValues.PINK.get();
+			color = Globals.PINK.get();
 			break;
 		}
 		
@@ -91,13 +91,13 @@ public class VisualizationSpace {
 	}
 
 	private void setEdgeStyle() {
-		graph.setEdgeStyleAttribute(0, VisualizationParams.WIDTH.get(), GlobalValues.THREE.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.COLOR.get(), GlobalValues.GREEN.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW.get(), GlobalValues.TRUE.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW_POSITION.get(), GlobalValues.ONE.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.WIDTH.get(), Globals.THREE.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.COLOR.get(), Globals.GREEN.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW.get(), Globals.TRUE.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW_POSITION.get(), Globals.ONE.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.STROKE.get(), VisualizationParams.DASHED.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.FONT_COLOR.get(),GlobalValues.YELLOW.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.STRENGTH.get(),GlobalValues.HALF.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.FONT_COLOR.get(),Globals.YELLOW.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.STRENGTH.get(),Globals.HALF.get());
 		
 	}
 
