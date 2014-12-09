@@ -46,6 +46,30 @@ public class AtomSpace {
 		}
 	}
 
+	public void removeAtom(String atomType, String id) {
+		if (atomType.equals(AtomType.VERTEX.get())) {
+			removeVertex(id);
+		} else {
+			removeEdge(id);
+		}
+	}
+	
+	private void removeEdge(String id) {
+		edgeSpace.remove(id);
+		
+		if (visualization) {
+			visualizationSpace.removeEdge(id);
+		}
+	}
+
+	private void removeVertex(String id) {
+		vertexSpace.remove(id);
+		
+		if (visualization) {
+			visualizationSpace.removeVertex(id);
+		}
+	}
+
 	private void createVertex(HashMap<String, String> atomParams) {
 		String vertexId = String.valueOf(vertexSpace.size());
 		Vertex vertex = new Vertex(
@@ -60,7 +84,7 @@ public class AtomSpace {
 					vertexId,
 					atomParams.get(AtomParams.VERTEX_TYPE.get()),
 					atomParams.get(AtomParams.VERTEX_LABEL.get()));
-	}
+		}
 	}
 
 	private void createEdge(HashMap<String, String> atomParams) {
