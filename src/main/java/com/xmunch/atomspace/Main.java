@@ -2,23 +2,23 @@ package com.xmunch.atomspace;
 
 import java.util.HashMap;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+
 import com.xmunch.atomspace.aux.AtomSpaceParams;
 import com.xmunch.atomspace.aux.Globals;
-import com.xmunch.atomspace.examples.RandomGraphExample;
 import com.xmunch.atomspace.model.AtomSpace;
 
+@ComponentScan
+@EnableAutoConfiguration
 public class Main {
 
     public static void main(String[] args) {
-    	
     	HashMap<String, String> atomSpaceParams = new HashMap<String, String>();
-    	HashMap<String, String> atomParams = new HashMap<String, String>();
-    	
     	atomSpaceParams.put(AtomSpaceParams.VISUALIZATION.get(),Globals.TRUE.get());
-    	
-    	AtomSpace atomSpace = AtomSpace.getInstance(atomSpaceParams);
-    	RandomGraphExample.run(atomParams,atomSpace);
-        
+    	AtomSpace.getInstance(atomSpaceParams);
+    	SpringApplication.run(Main.class, args);    
     }
 
 }
