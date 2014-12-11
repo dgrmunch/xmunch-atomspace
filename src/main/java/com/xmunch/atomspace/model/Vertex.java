@@ -9,12 +9,14 @@ public class Vertex extends Atom {
 	private String vertexType;
 	private String atomType;
 	private String vertexLabel;
+	private String vertexParams;
 	
-	public Vertex(String id, String vertexType, String vertexLabel) {
+	public Vertex(String id, String vertexType, String vertexLabel, String vertexParams) {
 		this.id = id;
 		this.vertexType = vertexType;
 		this.vertexLabel = vertexLabel;
-		this.atomType = AtomType.EDGE.get();
+		this.vertexParams = vertexParams;
+		this.atomType = AtomType.VERTEX.get();
 		 
 	}
 
@@ -48,6 +50,14 @@ public class Vertex extends Atom {
 
 	public void setVertexLabel(String vertexLabel) {
 		this.vertexLabel = vertexLabel;
+	}
+
+	public String getVertexParams() {
+		return vertexParams;
+	}
+
+	public void setVertexParams(String vertexParams) {
+		this.vertexParams = vertexParams;
 	}
 
 }

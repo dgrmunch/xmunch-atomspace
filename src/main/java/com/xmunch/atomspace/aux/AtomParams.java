@@ -55,6 +55,16 @@ public enum AtomParams {
 		public String get() {
 			return "edge_label";
 		}
+	}, VERTEX_PARAMS{
+		@Override
+		public String get() {
+			return "vpar";
+		}
+	}, EDGE_PARAMS{
+			@Override
+			public String get() {
+				return "epar";
+			}
 	};
 
 	public abstract String get();

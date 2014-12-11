@@ -21,6 +21,8 @@ public class AtomSpace {
 
 		visualizationActivation(atomSpaceParams
 				.get(AtomSpaceParams.VISUALIZATION.get()));
+		
+		//persistenceActivation(atomSpaceParams.get(AtomSpaceParams.PERSISTENCE.get()));
 	}
 
 	public static AtomSpace getInstance(HashMap<String, String> atomSpaceParams) {
@@ -77,7 +79,8 @@ public class AtomSpace {
 		Vertex vertex = new Vertex(
 				vertexId,
 				atomParams.get(AtomParams.VERTEX_TYPE.get()),
-				atomParams.get(AtomParams.VERTEX_LABEL.get()));
+				atomParams.get(AtomParams.VERTEX_LABEL.get()),
+				atomParams.get(AtomParams.VERTEX_PARAMS.get()));
 		
 		vertexSpace.put(vertexId, vertex);
 		
@@ -97,9 +100,8 @@ public class AtomSpace {
 				edgeId,
 				atomParams.get(AtomParams.FROM.get()), 
 				atomParams.get(AtomParams.TO.get()),
-				atomParams.get(AtomParams.STRENGTH.get()),
-				atomParams.get(AtomParams.EDGE_TYPE.get()),
-				atomParams.get(AtomParams.EDGE_LABEL.get()));
+				atomParams.get(AtomParams.EDGE_LABEL.get()),
+				atomParams.get(AtomParams.EDGE_PARAMS.get()));
 		
 		edgeSpace.put(edgeId, edge);
 		

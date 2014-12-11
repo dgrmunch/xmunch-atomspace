@@ -6,19 +6,17 @@ import com.xmunch.atomspace.aux.AtomType;
 public class Edge extends Atom {
 
 	private String id;
-	private String edgeType;
 	private String atomType;
 	private String from;
 	private String to;
-	private String strength;
 	private String edgeLabel;
+	private String edgeParams;
 	
-	public Edge(String id, String from, String to, String strength, String edgeType, String edgeLabel) {
+	public Edge(String id, String from, String to, String edgeLabel, String edgeParams) {
 		this.id = id;
 		this.from = from;
 		this.to = to;
-		this.strength = strength;
-		this.edgeType = edgeType;
+		this.setEdgeParams(edgeParams);
 		this.edgeLabel = edgeLabel;
 		this.atomType = AtomType.VERTEX.get();
 	}
@@ -29,14 +27,6 @@ public class Edge extends Atom {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getEdgeType() {
-		return edgeType;
-	}
-
-	public void setEdgeType(String edgeType) {
-		this.edgeType = edgeType;
 	}
 
 	public String getAtomType() {
@@ -63,20 +53,20 @@ public class Edge extends Atom {
 		this.to = to;
 	}
 
-	public String getStrength() {
-		return strength;
-	}
-
-	public void setStrength(String strength) {
-		this.strength = strength;
-	}
-
 	public String getEdgeLabel() {
 		return edgeLabel;
 	}
 
 	public void setEdgeLabel(String edgeLabel) {
 		this.edgeLabel = edgeLabel;
+	}
+
+	public String getEdgeParams() {
+		return edgeParams;
+	}
+
+	public void setEdgeParams(String edgeParams) {
+		this.edgeParams = edgeParams;
 	}
 
 }
