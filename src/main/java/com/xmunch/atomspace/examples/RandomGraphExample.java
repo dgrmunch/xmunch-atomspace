@@ -7,7 +7,6 @@ import java.util.Random;
 
 import com.xmunch.atomspace.aux.AtomParams;
 import com.xmunch.atomspace.aux.AtomType;
-import com.xmunch.atomspace.aux.VertexType;
 import com.xmunch.atomspace.model.AtomSpace;
 import com.xmunch.atomspace.model.Edge;
 import com.xmunch.atomspace.model.Vertex;
@@ -49,19 +48,19 @@ public class RandomGraphExample {
 	private static void createRandomVertices(Integer max, HashMap<String, String> atomParams, AtomSpace atomSpace) {
 		for (int i = 0; i < max; i += 4) {
 			atomParams.put(AtomParams.VERTEX_LABEL.get(), String.valueOf(i));
-			atomParams.put(AtomParams.VERTEX_TYPE.get(), VertexType.A.get());
+			atomParams.put(AtomParams.VERTEX_TYPE.get(),String.valueOf(i));
 			atomSpace.createAtom(AtomType.VERTEX.get(), atomParams);
 	
 			atomParams.put(AtomParams.VERTEX_LABEL.get(), String.valueOf(i + 1));
-			atomParams.put(AtomParams.VERTEX_TYPE.get(), VertexType.B.get());
+			atomParams.put(AtomParams.VERTEX_TYPE.get(), String.valueOf(i+1));
 			atomSpace.createAtom(AtomType.VERTEX.get(), atomParams);
 	
 			atomParams.put(AtomParams.VERTEX_LABEL.get(), String.valueOf(i + 2));
-			atomParams.put(AtomParams.VERTEX_TYPE.get(), VertexType.E.get());
+			atomParams.put(AtomParams.VERTEX_TYPE.get(), String.valueOf(i+2));
 			atomSpace.createAtom(AtomType.VERTEX.get(), atomParams);
 	
 			atomParams.put(AtomParams.VERTEX_LABEL.get(), String.valueOf(i + 3));
-			atomParams.put(AtomParams.VERTEX_TYPE.get(), VertexType.D.get());
+			atomParams.put(AtomParams.VERTEX_TYPE.get(), String.valueOf(i+3));
 			atomSpace.createAtom(AtomType.VERTEX.get(), atomParams);
 		}
 	}
