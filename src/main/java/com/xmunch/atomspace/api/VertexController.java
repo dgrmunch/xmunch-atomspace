@@ -19,11 +19,13 @@ import com.xmunch.atomspace.model.Vertex;
 public class VertexController {
 
     @RequestMapping("/vertex/create")
-    public Vertex createVertex(@RequestParam(value="label", defaultValue="no-name") String label) {
+    public Vertex createVertex(@RequestParam(value="label", defaultValue="no-name") String label, 
+    		@RequestParam(value="type", defaultValue="A") String type) {
     	
     	AtomSpace atomSpace = AtomSpace.getInstance();
     	HashMap<String, String> atomParams = new HashMap<String, String>();
     	atomParams.put(AtomParams.VERTEX_LABEL.get(), label);
+    	atomParams.put(AtomParams.VERTEX_TYPE.get(), type);
         return (Vertex) atomSpace.createAtom(AtomType.VERTEX.get(),atomParams);
     }
 }
