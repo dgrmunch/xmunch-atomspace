@@ -21,7 +21,6 @@ public class Edge extends Atom {
 		this.edgeType = edgeType;
 		this.edgeLabel = edgeLabel;
 		this.atomType = AtomType.VERTEX.get();
-		 
 	}
 
 	public String getId() {
