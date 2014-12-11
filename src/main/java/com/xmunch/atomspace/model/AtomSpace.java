@@ -38,12 +38,14 @@ public class AtomSpace {
 		return instance;
 	}
 
-	public void createAtom(String atomType, HashMap<String, String> atomParams) {
+	public Atom createAtom(String atomType, HashMap<String, String> atomParams) {
+		Atom atom;
 		if (atomType.equals(AtomType.VERTEX.get())) {
-			createVertex(atomParams);
+			atom = createVertex(atomParams);
 		} else {
-			createEdge(atomParams);
+			atom = createEdge(atomParams);
 		}
+		return atom;
 	}
 
 	public void removeAtom(String atomType, String id) {
@@ -70,7 +72,7 @@ public class AtomSpace {
 		}
 	}
 
-	private void createVertex(HashMap<String, String> atomParams) {
+	private Vertex createVertex(HashMap<String, String> atomParams) {
 		String vertexId = String.valueOf(vertexSpace.size());
 		Vertex vertex = new Vertex(
 				vertexId,
@@ -85,9 +87,11 @@ public class AtomSpace {
 					atomParams.get(AtomParams.VERTEX_TYPE.get()),
 					atomParams.get(AtomParams.VERTEX_LABEL.get()));
 		}
+		
+		return vertex;
 	}
 
-	private void createEdge(HashMap<String, String> atomParams) {
+	private Edge createEdge(HashMap<String, String> atomParams) {
 		String edgeId = String.valueOf(edgeSpace.size());
 		Edge edge = new Edge(
 				edgeId,
@@ -103,6 +107,8 @@ public class AtomSpace {
 				visualizationSpace.createEdge(atomParams.get(AtomParams.EDGE_LABEL.get()),atomParams.get(AtomParams.FROM.get()),
 				atomParams.get(AtomParams.TO.get()));
 		}
+		
+		return edge;
 	}
 
 	private void visualizationActivation(String visualizationParam) {
