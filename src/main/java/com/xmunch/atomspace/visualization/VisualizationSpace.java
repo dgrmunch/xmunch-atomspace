@@ -9,6 +9,8 @@ public class VisualizationSpace {
 	public VisualizationSpace() {
 		graph = new UbigraphClient();
 		graph.clear();
+		graph.newVertex(-1);
+		graph.setVertexAttribute(-1,VisualizationParams.LABEL.get(),Globals.SELF.get());
 		setEdgeStyle();
 	}
 	
@@ -103,6 +105,8 @@ public class VisualizationSpace {
 					identifier,
 					VisualizationParams.FONT_COLOR.get(),
 					Globals.GREEN.get());
+			
+			graph.newEdge(-1, identifier);
 		}
 		
 		createEdge(Globals.IS_A.get(), Integer.valueOf(vertexId), identifier);
