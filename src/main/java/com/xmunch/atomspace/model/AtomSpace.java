@@ -61,34 +61,39 @@ public class AtomSpace {
 		}
 	}
 	
-	private void removeEdge(String id) {
-		edgeSpace.remove(id);
+	private void removeEdge(String edgeLabel) {
 		
 		if (visualization) {
-			visualizationSpace.removeEdge(id);
+			visualizationSpace.removeEdge(edgeSpace.get(edgeLabel).getId());
 		}
+		
+		edgeSpace.remove(edgeLabel);
 	}
 
-	private void removeVertex(String id) {
-		vertexSpace.remove(id);
+	private void removeVertex(String vertexLabel) {
 		
 		if (visualization) {
-			visualizationSpace.removeVertex(id);
+			visualizationSpace.removeVertex(vertexSpace.get(vertexLabel).getId());
 		}
+		
+		vertexSpace.remove(vertexLabel);
 	}
 
 	private Vertex createVertex(HashMap<String, String> atomParams) {
-		Vertex vertex = new Vertex(
-				String.valueOf(vertexSpace.size()),
-				atomParams.get(AtomParams.VERTEX_TYPE.get()),
-				atomParams.get(AtomParams.VERTEX_LABEL.get()),
-				atomParams.get(AtomParams.VERTEX_PARAMS.get()));
-		
-		vertexSpace.put(vertex.getId(),vertex);
-		
-		if (visualization) {
-			createVertexInVisualSpace(vertex);
-		}
+		Vertex vertex = new Vertex();
+		if(!vertexSpace.containsKey(atomParams.get(AtomParams.VERTEX_LABEL.get()))){
+			 vertex = new Vertex(
+					String.valueOf(vertexSpace.size()),
+					atomParams.get(AtomParams.VERTEX_TYPE.get()),
+					atomParams.get(AtomParams.VERTEX_LABEL.get()),
+					atomParams.get(AtomParams.VERTEX_PARAMS.get()));
+			
+			vertexSpace.put(vertex.getVertexLabel(),vertex);
+			
+			if (visualization) {
+				createVertexInVisualSpace(vertex);
+			}
+		} 
 		
 		return vertex;
 	}
@@ -122,11 +127,12 @@ public class AtomSpace {
 				atomParams.get(AtomParams.EDGE_LABEL.get()),
 				atomParams.get(AtomParams.EDGE_PARAMS.get()));
 		
-		edgeSpace.put(edgeId, edge);
+		edgeSpace.put(edge.getEdgeLabel(), edge);
 		
 		if (visualization) {
-				visualizationSpace.createEdge(atomParams.get(AtomParams.EDGE_LABEL.get()),atomParams.get(AtomParams.FROM.get()),
-				atomParams.get(AtomParams.TO.get()));
+			String from = vertexSpace.get(atomParams.get(AtomParams.FROM.get())).getId();
+			String to = vertexSpace.get(atomParams.get(AtomParams.TO.get())).getId();
+				visualizationSpace.createEdge(atomParams.get(AtomParams.EDGE_LABEL.get()),from,to);
 		}
 		
 		return edge;

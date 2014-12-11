@@ -1,5 +1,6 @@
 package com.xmunch.atomspace.visualization;
 
+import com.xmunch.atomspace.aux.AtomParams;
 import com.xmunch.atomspace.aux.Globals;
 import com.xmunch.atomspace.aux.VisualizationParams;
 
@@ -57,7 +58,7 @@ public class VisualizationSpace {
 		graph.setVertexAttribute(
 				identifier,
 				VisualizationParams.LABEL.get(),
-				id + ":" +label);
+				label);
 		
 		graph.setVertexAttribute(
 				identifier,
@@ -82,11 +83,6 @@ public class VisualizationSpace {
 			graph.newVertex(identifier);
 			
 			graph.setVertexAttribute(
-					identifier, 
-					VisualizationParams.SHAPE.get(),
-					VisualizationParams.SPHERE.get());
-			
-			graph.setVertexAttribute(
 					identifier,
 					VisualizationParams.SIZE.get(),
 					Globals.ONE.get());
@@ -94,7 +90,7 @@ public class VisualizationSpace {
 			graph.setVertexAttribute(
 					identifier,
 					VisualizationParams.LABEL.get(),
-					vertexTypeId +":"+ vertexType);
+					AtomParams.VERTEX_TYPE +": "+ vertexType);
 			
 			graph.setVertexAttribute(
 					identifier,

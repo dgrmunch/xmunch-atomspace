@@ -12,6 +12,8 @@ public class Vertex extends Atom {
 	private String vertexLabel;
 	private String vertexParams;
 	
+	public Vertex() {}
+	
 	public Vertex(String id, String vertexType, String vertexLabel, String vertexParams) {
 		this.id = newId(id);
 		this.vertexType = vertexType;
