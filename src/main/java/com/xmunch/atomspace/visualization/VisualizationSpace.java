@@ -1,7 +1,6 @@
 package com.xmunch.atomspace.visualization;
 
 import com.xmunch.atomspace.aux.Globals;
-import com.xmunch.atomspace.aux.VertexType;
 import com.xmunch.atomspace.aux.VisualizationParams;
 
 public class VisualizationSpace {
@@ -16,9 +15,13 @@ public class VisualizationSpace {
 	public void removeEdge(String id) {
 		graph.removeEdge(Integer.valueOf(id));
 	}
-
+	
 	public void createEdge(String edgeLabel, String from, String to) {
-		Integer identifier = graph.newEdge(Integer.valueOf(from), Integer.valueOf(to));
+		createEdge(edgeLabel, Integer.valueOf(from), Integer.valueOf(to));
+	}
+
+	public void createEdge(String edgeLabel, Integer from, Integer to) {
+		Integer identifier = graph.newEdge(from , to);
 		String label = new String();
 		
 		if(edgeLabel != null){
@@ -35,7 +38,7 @@ public class VisualizationSpace {
 		graph.removeVertex(Integer.valueOf(id));
 	}
 	
-	public void createVertex(String id, String vertexType, String label) {
+	public void createVertex(String id, String label, Boolean createType, String vertexType, String vertexTypeId) {
 		Integer identifier = Integer.valueOf(id);
 		graph.newVertex(identifier);
 		
@@ -52,7 +55,7 @@ public class VisualizationSpace {
 		graph.setVertexAttribute(
 				identifier,
 				VisualizationParams.LABEL.get(),
-				label);
+				id + ":" +label);
 		
 		graph.setVertexAttribute(
 				identifier,
@@ -63,31 +66,51 @@ public class VisualizationSpace {
 				identifier,
 				VisualizationParams.FONT_COLOR.get(),
 				Globals.WHITE.get());
+		
+		createOrUpdateVertexType(createType, id, vertexTypeId, vertexType);
 	
 	}
 
-	private String getTypeColor(String vertexType) {
-		String color = new String();
+	private void createOrUpdateVertexType(Boolean createType, String vertexId, String vertexTypeId, String vertexType) {
 		
-		switch (VertexType.valueOf(vertexType)){
-		case A:
-			color = Globals.BLUE.get();
-			break;
-		case B:
-			color = Globals.RED.get();
-			break;
-		case C:
-			color = Globals.YELLOW.get();
-			break;
-		case D:
-			color = Globals.WHITE.get();
-			break;
-		case E:
-			color = Globals.PINK.get();
-			break;
+		Integer identifier = Integer.valueOf(vertexTypeId);
+		
+		if(createType) {
+			
+			graph.newVertex(identifier);
+			
+			graph.setVertexAttribute(
+					identifier, 
+					VisualizationParams.SHAPE.get(),
+					VisualizationParams.SPHERE.get());
+			
+			graph.setVertexAttribute(
+					identifier,
+					VisualizationParams.SIZE.get(),
+					Globals.ONE.get());
+			
+			graph.setVertexAttribute(
+					identifier,
+					VisualizationParams.LABEL.get(),
+					vertexTypeId +":"+ vertexType);
+			
+			graph.setVertexAttribute(
+					identifier,
+					VisualizationParams.COLOR.get(),
+					Globals.WHITE.get());
+			
+			graph.setVertexAttribute(
+					identifier,
+					VisualizationParams.FONT_COLOR.get(),
+					Globals.GREEN.get());
 		}
 		
-		return color;
+		createEdge(Globals.IS_A.get(), Integer.valueOf(vertexId), identifier);
+	}
+
+	private String getTypeColor(String vertexType) {
+		String color =String.format(Globals.HEX_GEN.get(), (0xFFFFFF & vertexType.hashCode()));
+		return Globals.SHARP.get()+color.substring(0, 6); 
 	}
 
 	private void setEdgeStyle() {
@@ -97,8 +120,6 @@ public class VisualizationSpace {
 		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW_POSITION.get(), Globals.ONE.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.STROKE.get(), VisualizationParams.DASHED.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.FONT_COLOR.get(),Globals.YELLOW.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.STRENGTH.get(),Globals.HALF.get());
-		
 	}
 
 }

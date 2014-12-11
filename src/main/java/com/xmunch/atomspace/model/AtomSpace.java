@@ -1,5 +1,6 @@
 package com.xmunch.atomspace.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.xmunch.atomspace.aux.AtomParams;
@@ -11,6 +12,7 @@ import com.xmunch.atomspace.visualization.VisualizationSpace;
 public class AtomSpace {
 	private static volatile AtomSpace instance = null;
 	private HashMap<String, Vertex> vertexSpace;
+	private ArrayList<String> vertexTypeSpace;
 	private HashMap<String, Edge> edgeSpace;
 	private VisualizationSpace visualizationSpace;
 	private Boolean visualization = false;
@@ -18,6 +20,7 @@ public class AtomSpace {
 	private AtomSpace(HashMap<String, String> atomSpaceParams) {
 		vertexSpace = new HashMap<String, Vertex>();
 		edgeSpace = new HashMap<String, Edge>();
+		vertexTypeSpace = new ArrayList<String>();
 
 		visualizationActivation(atomSpaceParams
 				.get(AtomSpaceParams.VISUALIZATION.get()));
@@ -75,23 +78,39 @@ public class AtomSpace {
 	}
 
 	private Vertex createVertex(HashMap<String, String> atomParams) {
-		String vertexId = String.valueOf(vertexSpace.size());
 		Vertex vertex = new Vertex(
-				vertexId,
+				String.valueOf(vertexSpace.size()),
 				atomParams.get(AtomParams.VERTEX_TYPE.get()),
 				atomParams.get(AtomParams.VERTEX_LABEL.get()),
 				atomParams.get(AtomParams.VERTEX_PARAMS.get()));
 		
-		vertexSpace.put(vertexId, vertex);
+		vertexSpace.put(vertex.getId(),vertex);
 		
 		if (visualization) {
-			visualizationSpace.createVertex(
-					vertexId,
-					atomParams.get(AtomParams.VERTEX_TYPE.get()),
-					atomParams.get(AtomParams.VERTEX_LABEL.get()));
+			createVertexInVisualSpace(vertex);
 		}
 		
 		return vertex;
+	}
+
+	private void createVertexInVisualSpace(Vertex vertex){
+		Boolean createType = true;
+		String vertexTypeId;
+		
+		if(!vertexTypeSpace.contains(vertex.getVertexType())){
+			vertexTypeSpace.add(vertex.getVertexType());
+			vertexTypeId = String.valueOf(vertexTypeSpace.size() - 1);
+		} else {
+			vertexTypeId = String.valueOf(vertexTypeSpace.indexOf(vertex.getVertexType()));
+			createType = false;
+		}
+		
+		visualizationSpace.createVertex(
+				vertex.getId(),
+				vertex.getVertexLabel(),
+				createType,
+				vertex.getVertexType(),
+				vertexTypeId);
 	}
 
 	private Edge createEdge(HashMap<String, String> atomParams) {
