@@ -1,6 +1,7 @@
 package com.xmunch.atomspace.model;
 
 import com.xmunch.atomspace.aux.AtomType;
+import com.xmunch.atomspace.aux.Globals;
 
 
 public class Vertex extends Atom {
@@ -12,12 +13,16 @@ public class Vertex extends Atom {
 	private String vertexParams;
 	
 	public Vertex(String id, String vertexType, String vertexLabel, String vertexParams) {
-		this.id = id;
+		this.id = newId(id);
 		this.vertexType = vertexType;
 		this.vertexLabel = vertexLabel;
 		this.vertexParams = vertexParams;
 		this.atomType = AtomType.VERTEX.get();
 		 
+	}
+
+	private String newId(String id) {
+		return String.valueOf(Integer.valueOf(Globals.VERTEX_ID_START_NUMBER.get()) + Integer.valueOf(id));
 	}
 
 	public String getId() {
