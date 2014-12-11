@@ -118,7 +118,7 @@ public class VisualizationSpace {
 	}
 
 	private void setEdgeStyle() {
-		graph.setEdgeStyleAttribute(0, VisualizationParams.WIDTH.get(), Globals.THREE.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.WIDTH.get(), Globals.ONE.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.COLOR.get(), Globals.GREEN.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW.get(), Globals.TRUE.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW_POSITION.get(), Globals.ONE.get());
