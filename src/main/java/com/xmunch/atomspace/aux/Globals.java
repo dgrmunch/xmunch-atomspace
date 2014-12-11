@@ -1,6 +1,12 @@
 package com.xmunch.atomspace.aux;
 
 public enum Globals {
+	SELF {
+		@Override
+		public String get() {
+			return "SELF";
+		}
+	},
 	IS_A {
 		@Override
 		public String get() {
