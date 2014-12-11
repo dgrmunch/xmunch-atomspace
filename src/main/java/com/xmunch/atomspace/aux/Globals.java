@@ -1,7 +1,12 @@
 package com.xmunch.atomspace.aux;
 
 public enum Globals {
-
+	IS_A {
+		@Override
+		public String get() {
+			return "IS_A";
+		}
+	},
 	TRUE {
 		@Override
 		public String get() {
@@ -72,7 +77,22 @@ public enum Globals {
 		public String get() {
 			return "http://127.0.0.1:20738/RPC2";
 		}		
+	}, VERTEX_ID_START_NUMBER {
+		@Override
+		public String get() {
+			return "9000";
+		}		
+	},	HEX_GEN {
+		@Override
+		public String get() {
+			return  "FF%06X";
+		}
+	},	SHARP {
+		@Override
+		public String get() {
+			return  "#";
+		}
 	};
-
+	
 	public abstract String get();
 }
