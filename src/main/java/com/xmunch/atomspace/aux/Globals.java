@@ -10,7 +10,7 @@ public enum Globals {
 	IS_A {
 		@Override
 		public String get() {
-			return "IS_A";
+			return "is_a";
 		}
 	},
 	TRUE {
