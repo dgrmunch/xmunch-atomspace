@@ -83,6 +83,11 @@ public class VisualizationSpace {
 			graph.newVertex(identifier);
 			
 			graph.setVertexAttribute(
+					identifier, 
+					VisualizationParams.SHAPE.get(),
+					VisualizationParams.SPHERE.get());
+			
+			graph.setVertexAttribute(
 					identifier,
 					VisualizationParams.SIZE.get(),
 					Globals.ONE.get());
@@ -90,17 +95,17 @@ public class VisualizationSpace {
 			graph.setVertexAttribute(
 					identifier,
 					VisualizationParams.LABEL.get(),
-					AtomParams.VERTEX_TYPE +": "+ vertexType);
+					vertexType);
 			
 			graph.setVertexAttribute(
 					identifier,
 					VisualizationParams.COLOR.get(),
-					Globals.WHITE.get());
+					Globals.BLUE.get());
 			
 			graph.setVertexAttribute(
 					identifier,
 					VisualizationParams.FONT_COLOR.get(),
-					Globals.GREEN.get());
+					Globals.BLUE.get());
 			
 			graph.newEdge(-1, identifier);
 		}
@@ -115,11 +120,11 @@ public class VisualizationSpace {
 
 	private void setEdgeStyle() {
 		graph.setEdgeStyleAttribute(0, VisualizationParams.WIDTH.get(), Globals.ONE.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.COLOR.get(), Globals.GREEN.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.COLOR.get(), Globals.BLUE.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW.get(), Globals.TRUE.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.ARROW_POSITION.get(), Globals.ONE.get());
 		graph.setEdgeStyleAttribute(0, VisualizationParams.STROKE.get(), VisualizationParams.DASHED.get());
-		graph.setEdgeStyleAttribute(0, VisualizationParams.FONT_COLOR.get(),Globals.YELLOW.get());
+		graph.setEdgeStyleAttribute(0, VisualizationParams.FONT_COLOR.get(),Globals.BLUE.get());
 	}
 
 }
