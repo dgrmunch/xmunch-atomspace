@@ -22,10 +22,11 @@ public class AtomSpace {
 		edgeSpace = new HashMap<String, Edge>();
 		vertexTypeSpace = new ArrayList<String>();
 
-		visualizationActivation(atomSpaceParams
-				.get(AtomSpaceParams.VISUALIZATION.get()));
-		
-		//persistenceActivation(atomSpaceParams.get(AtomSpaceParams.PERSISTENCE.get()));
+		visualizationActivation(
+				atomSpaceParams.get(AtomSpaceParams.VISUALIZATION.get()),
+				atomSpaceParams.get(AtomSpaceParams.SELF.get()));
+
+		// persistenceActivation(atomSpaceParams.get(AtomSpaceParams.PERSISTENCE.get()));
 	}
 
 	public static AtomSpace getInstance(HashMap<String, String> atomSpaceParams) {
@@ -71,24 +72,25 @@ public class AtomSpace {
 	}
 
 	private void removeVertex(String vertexLabel) {
-		
+
 		if (visualization) {
-			visualizationSpace.removeVertex(vertexSpace.get(vertexLabel).getId());
+			visualizationSpace.removeVertex(vertexSpace.get(vertexLabel)
+					.getId());
 		}
-		
+
 		vertexSpace.remove(vertexLabel);
 	}
 
 	private Vertex createVertex(HashMap<String, String> atomParams) {
 		Vertex vertex = new Vertex();
-		if(!vertexSpace.containsKey(atomParams.get(AtomParams.VERTEX_LABEL.get()))){
-			 vertex = new Vertex(
-					String.valueOf(vertexSpace.size()),
+		if (!vertexSpace.containsKey(atomParams.get(AtomParams.VERTEX_LABEL
+				.get()))) {
+			vertex = new Vertex(String.valueOf(vertexSpace.size()),
 					atomParams.get(AtomParams.VERTEX_TYPE.get()),
 					atomParams.get(AtomParams.VERTEX_LABEL.get()),
 					atomParams.get(AtomParams.VERTEX_PARAMS.get()));
-			
-			vertexSpace.put(vertex.getVertexLabel(),vertex);
+
+			vertexSpace.put(vertex.getVertexLabel(), vertex);
 			
 			if (visualization) {
 				createVertexInVisualSpace(vertex);

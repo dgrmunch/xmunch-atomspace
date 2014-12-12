@@ -17,6 +17,7 @@ public class Main {
     public static void main(String[] args) {
     	HashMap<String, String> atomSpaceParams = new HashMap<String, String>();
     	atomSpaceParams.put(AtomSpaceParams.VISUALIZATION.get(),Globals.TRUE.get());
+    	atomSpaceParams.put(AtomSpaceParams.SELF.get(),Globals.TRUE.get());
     	AtomSpace.getInstance(atomSpaceParams);
     	SpringApplication.run(Main.class, args);    
     }

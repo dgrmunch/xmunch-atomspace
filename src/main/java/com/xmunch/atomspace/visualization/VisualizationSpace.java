@@ -1,17 +1,21 @@
 package com.xmunch.atomspace.visualization;
 
-import com.xmunch.atomspace.aux.AtomParams;
 import com.xmunch.atomspace.aux.Globals;
 import com.xmunch.atomspace.aux.VisualizationParams;
 
 public class VisualizationSpace {
 	private UbigraphClient graph;
+	private Boolean self = false;
 
-	public VisualizationSpace() {
+	public VisualizationSpace(Boolean self) {
 		graph = new UbigraphClient();
 		graph.clear();
-		graph.newVertex(-1);
-		graph.setVertexAttribute(-1,VisualizationParams.LABEL.get(),Globals.SELF.get());
+		if(self){
+			this.self = self;
+			graph.newVertex(-1);
+			graph.setVertexAttribute(-1,VisualizationParams.SHAPE.get(),VisualizationParams.SPHERE.get());
+			graph.setVertexAttribute(-1,VisualizationParams.COLOR.get(),Globals.GREEN.get());
+		}
 		setEdgeStyle();
 	}
 	
@@ -107,7 +111,7 @@ public class VisualizationSpace {
 					VisualizationParams.FONT_COLOR.get(),
 					Globals.BLUE.get());
 			
-			graph.newEdge(-1, identifier);
+			if(this.self) graph.newEdge(-1, identifier);
 		}
 		
 		createEdge(Globals.IS_A.get(), Integer.valueOf(vertexId), identifier);
