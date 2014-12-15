@@ -19,6 +19,12 @@ public enum Globals {
 			return " ";
 		}
 	},
+	COMMA {
+		@Override
+		public String get() {
+			return ",";
+		}
+	},
 	JUMP {
 		@Override
 		public String get() {

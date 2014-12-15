@@ -110,6 +110,7 @@ public class AtomSpace {
 			BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
 			bufferWriter.append(vertex.getVertexLabel() + Globals.SPACE.get()
 					+ Globals.IS_A.get() + Globals.SPACE.get() + vertex.getVertexType()
+					+ Globals.SPACE.get() + vertex.getVertexParams()
 					+ Globals.JUMP.get());
 			bufferWriter.close();
 		} catch (IOException e) {
@@ -124,7 +125,8 @@ public class AtomSpace {
 			bufferWriter
 					.append(edge.getFrom() + Globals.SPACE.get()
 							+ edge.getEdgeLabel() + Globals.SPACE.get()
-							+ edge.getTo() + Globals.JUMP.get());
+							+ edge.getTo() + Globals.SPACE.get() 
+							+ edge.getEdgeParams() + Globals.JUMP.get());
 			bufferWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
