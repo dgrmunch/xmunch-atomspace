@@ -125,9 +125,29 @@ public class AtomSpace {
 						vertexLineToAtomParams(line.split(Globals.SPACE.get())),
 						false);
 			}
-			
+
 			bufferReader.close();
-			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void readEdges() {
+		BufferedReader bufferReader;
+		try {
+			FileReader fileReader = new FileReader(EDGES_PERSISTENCE_FILE);
+			bufferReader = new BufferedReader(fileReader);
+			String line = Globals.EMPTY.get();
+
+			while ((line = bufferReader.readLine()) != null) {
+				createEdge(
+						edgeLineToAtomParams(line.split(Globals.SPACE.get())),
+						false);
+			}
+
+			bufferReader.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
