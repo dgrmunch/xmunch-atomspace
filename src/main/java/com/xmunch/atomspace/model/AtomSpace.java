@@ -14,7 +14,8 @@ import com.xmunch.atomspace.visualization.VisualizationSpace;
 
 public class AtomSpace {
 
-	public static String PERSISTENCE_FILE = "persistence.xa";
+	public static String VERTICES_PERSISTENCE_FILE = "vertices.xa";
+	public static String EDGES_PERSISTENCE_FILE = "edges.xa";
 	private static volatile AtomSpace instance = null;
 	private HashMap<String, Vertex> vertexSpace;
 	private ArrayList<String> vertexTypeSpace;
@@ -30,6 +31,8 @@ public class AtomSpace {
 		visualizationActivation(
 				atomSpaceParams.get(AtomSpaceParams.VISUALIZATION.get()),
 				atomSpaceParams.get(AtomSpaceParams.SELF.get()));
+		
+		Load all persistent data
 	}
 
 	public static AtomSpace getInstance(HashMap<String, String> atomSpaceParams) {
@@ -106,7 +109,7 @@ public class AtomSpace {
 
 	private void writeVertex(Vertex vertex) {
 		try {
-			FileWriter fileWriter = new FileWriter(PERSISTENCE_FILE, true);
+			FileWriter fileWriter = new FileWriter(VERTICES_PERSISTENCE_FILE, true);
 			BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
 			bufferWriter.append(vertex.getVertexLabel() + Globals.SPACE.get()
 					+ Globals.IS_A.get() + Globals.SPACE.get() + vertex.getVertexType()
@@ -120,7 +123,7 @@ public class AtomSpace {
 
 	private void writeEdge(Edge edge) {
 		try {
-			FileWriter fileWriter = new FileWriter(PERSISTENCE_FILE, true);
+			FileWriter fileWriter = new FileWriter(EDGES_PERSISTENCE_FILE, true);
 			BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
 			bufferWriter
 					.append(edge.getFrom() + Globals.SPACE.get()
