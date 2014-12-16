@@ -1,6 +1,8 @@
 package com.xmunch.atomspace.model;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class AtomSpace {
 				atomSpaceParams.get(AtomSpaceParams.VISUALIZATION.get()),
 				atomSpaceParams.get(AtomSpaceParams.SELF.get()));
 		
-		Load all persistent data
+		//TODO: Load all persistent data
 	}
 
 	public static AtomSpace getInstance(HashMap<String, String> atomSpaceParams) {
@@ -53,9 +55,9 @@ public class AtomSpace {
 	public Atom createAtom(String atomType, HashMap<String, String> atomParams) {
 		Atom atom;
 		if (atomType.equals(AtomType.VERTEX.get())) {
-			atom = createVertex(atomParams);
+			atom = createVertex(atomParams, true);
 		} else {
-			atom = createEdge(atomParams);
+			atom = createEdge(atomParams, true);
 		}
 		return atom;
 	}
@@ -87,7 +89,8 @@ public class AtomSpace {
 		vertexSpace.remove(vertexLabel);
 	}
 
-	private Vertex createVertex(HashMap<String, String> atomParams) {
+	private Vertex createVertex(HashMap<String, String> atomParams,
+			Boolean persistence) {
 		Vertex vertex = new Vertex();
 		if (!vertexSpace.containsKey(atomParams.get(AtomParams.VERTEX_LABEL
 				.get()))) {
@@ -97,7 +100,10 @@ public class AtomSpace {
 					atomParams.get(AtomParams.VERTEX_PARAMS.get()));
 
 			vertexSpace.put(vertex.getVertexLabel(), vertex);
-			writeVertex(vertex);
+
+			if (persistence) {
+				writeVertex(vertex);
+			}
 
 			if (visualization) {
 				createVertexInVisualSpace(vertex);
@@ -107,14 +113,66 @@ public class AtomSpace {
 		return vertex;
 	}
 
+	private void readVertices() {
+		BufferedReader bufferReader;
+		try {
+			FileReader fileReader = new FileReader(VERTICES_PERSISTENCE_FILE);
+			bufferReader = new BufferedReader(fileReader);
+			String line = Globals.EMPTY.get();
+
+			while ((line = bufferReader.readLine()) != null) {
+				createVertex(
+						vertexLineToAtomParams(line.split(Globals.SPACE.get())),
+						false);
+			}
+			
+			bufferReader.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private HashMap<String, String> vertexLineToAtomParams(String[] line) {
+		HashMap<String, String> atomParams = new HashMap<String, String>();
+		atomParams.put(AtomParams.VERTEX_LABEL.get(), line[0]);
+		atomParams.put(AtomParams.VERTEX_TYPE.get(), line[2]);
+		atomParams.put(AtomParams.VERTEX_PARAMS.get(), extractParams(line));
+
+		return atomParams;
+	}
+
+	private HashMap<String, String> edgeLineToAtomParams(String[] line) {
+		HashMap<String, String> atomParams = new HashMap<String, String>();
+		atomParams.put(AtomParams.FROM.get(), line[0]);
+		atomParams.put(AtomParams.TO.get(), line[2]);
+		atomParams.put(AtomParams.EDGE_LABEL.get(), line[1]);
+		atomParams.put(AtomParams.EDGE_PARAMS.get(), extractParams(line));
+
+		return atomParams;
+	}
+
+	private String extractParams(String[] line) {
+		String params = Globals.EMPTY.get();
+
+		for (int i = 3; i < line.length; i++) {
+			params += line[i];
+			if (i < line.length - 1)
+				params += Globals.SPACE;
+		}
+
+		return params;
+	}
+
 	private void writeVertex(Vertex vertex) {
 		try {
-			FileWriter fileWriter = new FileWriter(VERTICES_PERSISTENCE_FILE, true);
+			FileWriter fileWriter = new FileWriter(VERTICES_PERSISTENCE_FILE,
+					true);
 			BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
 			bufferWriter.append(vertex.getVertexLabel() + Globals.SPACE.get()
-					+ Globals.IS_A.get() + Globals.SPACE.get() + vertex.getVertexType()
-					+ Globals.SPACE.get() + vertex.getVertexParams()
-					+ Globals.JUMP.get());
+					+ Globals.IS_A.get() + Globals.SPACE.get()
+					+ vertex.getVertexType() + Globals.SPACE.get()
+					+ vertex.getVertexParams() + Globals.JUMP.get());
 			bufferWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -125,11 +183,10 @@ public class AtomSpace {
 		try {
 			FileWriter fileWriter = new FileWriter(EDGES_PERSISTENCE_FILE, true);
 			BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
-			bufferWriter
-					.append(edge.getFrom() + Globals.SPACE.get()
-							+ edge.getEdgeLabel() + Globals.SPACE.get()
-							+ edge.getTo() + Globals.SPACE.get() 
-							+ edge.getEdgeParams() + Globals.JUMP.get());
+			bufferWriter.append(edge.getFrom() + Globals.SPACE.get()
+					+ edge.getEdgeLabel() + Globals.SPACE.get() + edge.getTo()
+					+ Globals.SPACE.get() + edge.getEdgeParams()
+					+ Globals.JUMP.get());
 			bufferWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -154,7 +211,8 @@ public class AtomSpace {
 				vertexTypeId);
 	}
 
-	private Edge createEdge(HashMap<String, String> atomParams) {
+	private Edge createEdge(HashMap<String, String> atomParams,
+			Boolean persistence) {
 		String edgeId = String.valueOf(edgeSpace.size());
 		Edge edge = new Edge(edgeId, atomParams.get(AtomParams.FROM.get()),
 				atomParams.get(AtomParams.TO.get()),
@@ -172,7 +230,9 @@ public class AtomSpace {
 					atomParams.get(AtomParams.EDGE_LABEL.get()), from, to);
 		}
 
-		writeEdge(edge);
+		if (persistence) {
+			writeEdge(edge);
+		}
 
 		return edge;
 	}
