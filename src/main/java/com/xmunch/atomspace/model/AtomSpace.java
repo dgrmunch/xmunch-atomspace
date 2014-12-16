@@ -33,8 +33,9 @@ public class AtomSpace {
 		visualizationActivation(
 				atomSpaceParams.get(AtomSpaceParams.VISUALIZATION.get()),
 				atomSpaceParams.get(AtomSpaceParams.SELF.get()));
-		
-		//TODO: Load all persistent data
+
+		readVertices();
+		readEdges();
 	}
 
 	public static AtomSpace getInstance(HashMap<String, String> atomSpaceParams) {
