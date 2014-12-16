@@ -13,6 +13,12 @@ public enum Globals {
 			return "is_a";
 		}
 	},
+	EMPTY {
+		@Override
+		public String get() {
+			return "";
+		}
+	},
 	SPACE {
 		@Override
 		public String get() {
