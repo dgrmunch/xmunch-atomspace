@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import com.xmunch.atomspace.aux.AtomParams;
 import com.xmunch.atomspace.aux.AtomSpaceParams;
@@ -281,5 +282,16 @@ public class AtomSpace {
 
 	public void setEdgeSpace(HashMap<String, Edge> edgeSpace) {
 		this.edgeSpace = edgeSpace;
+	}
+	public Integer getTypesNumber() {
+		return vertexTypeSpace.size();
+	}
+
+	public ArrayList<String> getTypes() {
+		return vertexTypeSpace;
+	}
+
+	public Vertex getVertexByLabel(String label) {
+		return vertexSpace.get(label);
 	}
 }
