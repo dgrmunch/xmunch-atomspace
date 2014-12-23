@@ -302,6 +302,20 @@ public class AtomSpace {
 		}
 		return number;
 	}
+
+	public ArrayList<String> getVerticesLabels(String type) {
+		Vertex vertex;
+		ArrayList<String> verticesLabels = new ArrayList<String>();
+		Iterator<Vertex> vertexIterator = vertexSpace.values().iterator();
+		while(vertexIterator.hasNext()){
+			vertex = vertexIterator.next();
+			if(vertex.getVertexType().equals(type) || type.equals(Globals.EMPTY)){
+				verticesLabels.add(vertex.getVertexLabel());
+			}
+		}
+		return verticesLabels;
+	}
+
 	public Integer getTypesNumber() {
 		return vertexTypeSpace.size();
 	}
