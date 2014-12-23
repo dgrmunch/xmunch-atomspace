@@ -283,6 +283,16 @@ public class AtomSpace {
 	public void setEdgeSpace(HashMap<String, Edge> edgeSpace) {
 		this.edgeSpace = edgeSpace;
 	}
+	private Integer getVerticesNumberWithType(String type) {
+		Integer number = 0;
+		Iterator<Vertex> vertexIterator = vertexSpace.values().iterator();
+		while(vertexIterator.hasNext()){
+			if(vertexIterator.next().getVertexType().equals(type)){
+				number++;
+			}
+		}
+		return number;
+	}
 	public Integer getTypesNumber() {
 		return vertexTypeSpace.size();
 	}
