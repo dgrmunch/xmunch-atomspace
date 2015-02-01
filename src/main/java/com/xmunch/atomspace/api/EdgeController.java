@@ -1,5 +1,6 @@
 package com.xmunch.atomspace.api;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,13 @@ public class EdgeController {
 		atomParams.put(AtomParams.EDGE_PARAMS.get(),
 				params.replace(Globals.COMMA.get(), Globals.SPACE.get()));
 		return (Edge) atomSpace.createAtom(AtomType.EDGE.get(), atomParams);
+	}
+	
+	@RequestMapping("/edges/out/get/")
+	public ArrayList<Edge> getVertexOutEdges(
+			@RequestParam(value = "label", defaultValue = "no-name") String vertexLabel) {
+		AtomSpace atomSpace = AtomSpace.getInstance();
+		return (ArrayList<Edge>) atomSpace.getOutEdgesByVertexLabel(vertexLabel);
 	}
 
 }

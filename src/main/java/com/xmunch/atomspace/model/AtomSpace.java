@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -327,4 +328,16 @@ public class AtomSpace {
 	public Vertex getVertexByLabel(String label) {
 		return vertexSpace.get(label);
 	}
+
+	public ArrayList<Edge> getOutEdgesByVertexLabel(String vertexLabel) {
+		ArrayList<Edge> edges = new ArrayList<Edge>();
+		
+		for(Edge edge : edgeSpace.values()){
+			if(edge.getFrom().equals(vertexLabel)){
+				edges.add(edge);
+			}
+		}
+		return edges;
+	}
+	
 }
