@@ -38,7 +38,7 @@
 			<artifactId>ws-commons-util</artifactId>
 			<version>1.0.1</version>
 		</dependency>
-		
+
 	</dependencies>
 	<properties>
 		<start-class>com.xmunch.atomspace.Main</start-class>
